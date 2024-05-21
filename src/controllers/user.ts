@@ -1,3 +1,5 @@
+import User from "../models/User";
+
 export class userController{
 
     private static instance: userController;
@@ -13,5 +15,14 @@ export class userController{
 
     getAllUsers(){
         return "All Users....."
+    }
+
+    async createUser(){
+      return await User.create({
+        name:"abdo",
+        password:"Abdo12345",
+        email:"abdo@example.com",
+        role:"admin"
+      })
     }
 }

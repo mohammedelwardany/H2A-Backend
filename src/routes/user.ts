@@ -11,6 +11,11 @@ export const userRouter : ()=> Router =()=>{
     router.get("/users",(req: express.Request,res:express.Response)=>{
         res.json({message:userControllerInstance.getAllUsers()})
     })
+
+    router.post("/",(req,res)=>{
+        
+        res.json({message:"Created" , user:userControllerInstance.createUser()})
+    })
     return router
 }
 
