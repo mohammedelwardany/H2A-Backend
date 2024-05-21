@@ -1,10 +1,13 @@
+import {  userController } from './controllers/user';
 import { PORT } from './../constants';
 import express from "express";
 import cors from "cors";
 import { connect } from './config/db';
+import { mainRouter } from './routes';
 
 
 const app = express();
+
 
 
 //#region Middleware
@@ -18,6 +21,10 @@ app.use(express.json());
 app.get("/", (req:express.Request, res:express.Response) => {
   res.send("Hello World ");
 });
+
+
+
+app.use('/api/v1',mainRouter)
 
 connect();
 
