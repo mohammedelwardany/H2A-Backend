@@ -1,18 +1,23 @@
+import { IUser, role } from "../interfaces/IUser";
 import { model, Schema } from "mongoose";
 
 
-const userSchema = new Schema({
+const userSchema = new Schema<IUser>({
     name:{
         type: String,
+        required:true
     },
     email:{
         type: String,
+        required:true
     },
     password:{
         type: String,
+        required:true
     },
     role:{
-        enum:["superadmin","admin"],
+        type: [String],
+        enum:["admin","superadmin","editor"],
     }
 })
 
