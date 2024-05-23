@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import { connect } from './config/db';
 import { mainRouter } from './routes';
+import { errorHandler } from './middleware/errorHandler';
 
 
 const app = express();
@@ -25,6 +26,8 @@ app.get("/", (req:express.Request, res:express.Response) => {
 
 
 app.use('/api/v1',mainRouter)
+
+app.use(errorHandler)
 
 connect();
 

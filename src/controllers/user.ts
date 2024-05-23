@@ -25,4 +25,9 @@ export class userController{
         role:"admin"
       })
     }
+
+
+    async getUserById(id:string){
+      return await User.findById(id)
+    }
 }
