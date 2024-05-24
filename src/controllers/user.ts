@@ -1,4 +1,6 @@
+import bcrypt from "bcrypt";
 import User from "../models/User";
+import CustomError from "../errors/CustomError";
 
 export class userController{
 
@@ -30,4 +32,6 @@ export class userController{
     async getUserById(id:string){
       return await User.findById(id)
     }
+
+    
 }
