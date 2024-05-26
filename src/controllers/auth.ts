@@ -3,6 +3,8 @@ import User from "../models/User";
 import CustomError from "../errors/CustomError";
 import { IUser } from '../interfaces/IUser';
 import { authSchema } from '../vaildators/auth';
+import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from '../../constants';
 
 
 export class authController{
@@ -21,7 +23,7 @@ export class authController{
       async login(email:string,password:string){
 
   
-        const user = await User.findOne({email})
+        const user = await User.findOne({email},{__v:0})
   
         if(!user)
           throw new CustomError("Invalid credentials",401)
@@ -30,8 +32,10 @@ export class authController{
   
         if(!isMatch)
           throw new CustomError("Invalid credentials",401)
+
+        const token = jwt.sign({user},JWT_SECRET as string)
   
-        return user
+        return {user , token}
       }
 
 
@@ -39,20 +43,12 @@ export class authController{
 
         const {name,email,password,role} = user_
 
-        // // const validation = await authSchema.data.validateAsync(user_ ,{abortEarly:false})
-        // // if(validation){
-        // //     // console.log(validation); 
-        // //     const errorMessage = validation.details.map((error:any)=>error.message).join(',')
-        // //     console.log(errorMessage);
-                           
-        //     // throw new CustomError(errorMessage,400)
-        // }
-
+        const passwordHash = await bcrypt.hash(password,10)
 
         const user = await User.create({
           name,
           email,
-          password,
+          password:passwordHash,
           role
         })
   

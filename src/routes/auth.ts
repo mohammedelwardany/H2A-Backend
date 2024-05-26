@@ -1,7 +1,7 @@
 import CustomError from '../errors/CustomError';
 import { authController } from '../controllers/auth';
 import  express, { Router } from 'express';
-import { authSchema } from '../vaildators/auth';
+import { authSchema, loginSchema } from '../vaildators/auth';
 import { joiValidation } from '../middleware/joiVadiation';
 
 
@@ -11,16 +11,12 @@ const authControllerInstance = authController.getInstance()
 export const authRouter : ()=> Router =()=>{
 
 
-    router.post("/login",async (req,res,next)=>{
+    router.post("/login",joiValidation(loginSchema.data),async (req,res,next)=>{
         try {
             const {email,password} = req.body
 
-            if(!email || !password)
-                throw new CustomError("Please provide email and password",400)
-
-
-            const user = await authControllerInstance.login(email,password)
-            return res.status(200).json({message:"Successfully",user})
+            const {user , token} = await authControllerInstance.login(email,password)
+            return res.status(200).json({message:"Successfully",user,token})
         } catch (error) {
             next(error)
         }
