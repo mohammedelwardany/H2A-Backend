@@ -1,6 +1,4 @@
-import bcrypt from "bcrypt";
 import User from "../models/User";
-import CustomError from "../errors/CustomError";
 
 export class userController{
 

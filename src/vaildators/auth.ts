@@ -1,4 +1,4 @@
-import Joi, { date } from "joi";
+import Joi from "joi";
 
 export const authSchema ={
     data: Joi.object({

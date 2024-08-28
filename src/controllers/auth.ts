@@ -2,7 +2,6 @@ import bcrypt  from 'bcrypt';
 import User from "../models/User";
 import CustomError from "../errors/CustomError";
 import { IUser } from '../interfaces/IUser';
-import { authSchema } from '../vaildators/auth';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from '../../constants';
 

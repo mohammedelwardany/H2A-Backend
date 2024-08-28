@@ -1,4 +1,3 @@
-import CustomError from '../errors/CustomError';
 import { authController } from '../controllers/auth';
 import  express, { Router } from 'express';
 import { authSchema, loginSchema } from '../vaildators/auth';

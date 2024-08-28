@@ -1,4 +1,4 @@
-import { IUser, role } from "../interfaces/IUser";
+import { IUser } from "../interfaces/IUser";
 import { model, Schema } from "mongoose";
 
 

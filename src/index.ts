@@ -1,4 +1,3 @@
-import {  userController } from './controllers/user';
 import { PORT } from './../constants';
 import express from "express";
 import cors from "cors";
