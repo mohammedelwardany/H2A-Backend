@@ -45,8 +45,8 @@ export class productController {
         return await Product.find().skip(skip - 1).limit(limit)
     }
 
-    async createProduct() {
-        return await Product.create(productTest)
+    async createProduct(product:IProduct) {
+        return await Product.create(product)
     }
 
 

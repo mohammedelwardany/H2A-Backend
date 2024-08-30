@@ -1,5 +1,9 @@
+import { joiParam, joiValidation } from '../middleware/joiVadiation';
 import { productController } from '../controllers/product';
 import express, { Router } from 'express';
+import { ID } from '../vaildators/general';
+import { productSchema } from '../vaildators/product';
+import CustomError from '../errors/CustomError';
 
 
 
@@ -17,36 +21,41 @@ export const productRouter: () => Router = () => {
             next(error)
         }
     })
-    router.get("/:id", async (req, res, next) => {
+    router.get("/:id",joiParam(ID.data) ,async (req, res, next) => {
         try {
             const { id } = req.params;
-            return res.status(200).json(await productControllerInstance.getProductById(id))
+            const product = await productControllerInstance.getProductById(id);
+            if(!product) throw new CustomError("NOT FOUND",404)
+            return res.status(200).json(product)
         } catch (error) {
             next(error)
         }
     })
-    router.post("/", async (req, res, next) => {
+    router.post("/",joiValidation(productSchema.data) ,async (req, res, next) => {
         try {
-            return res.status(201).json(await productControllerInstance.createProduct())
+            return res.status(201).json(await productControllerInstance.createProduct(req.body))
         } catch (error) {
             next(error)
         }
     })
 
-    router.put("/:id",async(req,res,next)=>{
+    router.put("/:id",joiParam(ID.data),joiValidation(productSchema.data),async(req,res,next)=>{
         try {
             const{id}=req.params;
-            await productControllerInstance.updateProduct(id,req.body)
+            const product =  await productControllerInstance.updateProduct(id,req.body);
+            if(!product) throw new CustomError("NOT FOUND",404)
             return res.status(200).json({message:"Product Update Successfully"})
         } catch (error) {
             next(error)
         }
     })
 
-    router.delete("/:id",async(req,res,next)=>{
+    router.delete("/:id",joiParam(ID.data),async(req,res,next)=>{
         try {
             const{id}=req.params;
-            return res.status(200).json({product:await productControllerInstance.deleteProduct(id),message:"Deleted Successfully"})
+            const product = await productControllerInstance.deleteProduct(id);
+            if(!product) throw new CustomError("NOT FOUND",404)
+            return res.status(200).json({product,message:"Deleted Successfully"})
         } catch (error) {
             next(error)
         }
