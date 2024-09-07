@@ -14,9 +14,16 @@ const productControllerInstance = productController.getInstance()
 export const productRouter: () => Router = () => {
     router.get("/", async (req, res, next) => {
         try {
-            const { limit, skip } = req.query;
-            const products = await productControllerInstance.getAllProducts(+limit, +skip);
+            const { limit, skip , segments , fields } = req.query;
+            const products = await productControllerInstance.getAllProducts(+limit, +skip,segments as string[],fields as string[]);
             return res.status(200).json(products)
+        } catch (error) {
+            next(error)
+        }
+    })
+    router.get("/segment-field",async(req,res,next)=>{
+        try {
+            return res.status(200).json(await productControllerInstance.getSegment_Fields())
         } catch (error) {
             next(error)
         }
@@ -31,6 +38,7 @@ export const productRouter: () => Router = () => {
             next(error)
         }
     })
+
     router.post("/",joiValidation(productSchema.data) ,async (req, res, next) => {
         try {
             return res.status(201).json(await productControllerInstance.createProduct(req.body))

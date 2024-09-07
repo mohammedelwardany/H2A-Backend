@@ -41,11 +41,21 @@ export class productController {
         return productController.instance;
     }
 
-    async getAllProducts(limit: number, skip: number) {
-        return await Product.find().skip(skip - 1).limit(limit)
-    }
+    async getAllProducts(limit: number, skip: number, segments?: string[], fieldOfApplication?: string[]) {
+        const filter: any = {};
+      
+        if (segments && segments.length > 0) {
+          filter['clinicalSegments.segments'] = { $in: segments };
+        }
+      
+        if (fieldOfApplication && fieldOfApplication.length > 0) {
+          filter['clinicalSegments.fieldOfApplication'] = { $in: fieldOfApplication };
+        }
+      
+        return await Product.find(filter).skip(skip - 1).limit(limit);
+      }
 
-    async createProduct(product:IProduct) {
+    async createProduct(product: IProduct) {
         return await Product.create(product)
     }
 
@@ -54,12 +64,29 @@ export class productController {
         return await Product.findById(id)
     }
 
-    async updateProduct(id:string,body:IProduct){
-        return await Product.findByIdAndUpdate(id,body);
+    async updateProduct(id: string, body: IProduct) {
+        return await Product.findByIdAndUpdate(id, body);
     }
 
-    async deleteProduct(id:string){
+    async deleteProduct(id: string) {
         return await Product.findByIdAndDelete(id);
+    }
+
+    async getSegment_Fields() {
+        const clinicalData = await Product.aggregate([
+            { $unwind: '$clinicalSegments.segments' },
+            { $unwind: '$clinicalSegments.fieldOfApplication' },
+            {
+                $group: {
+                    _id: null,
+                    segments: { $addToSet: '$clinicalSegments.segments' },
+                    fieldOfApplication: { $addToSet: '$clinicalSegments.fieldOfApplication' }
+                }
+            },
+            { $project: { _id: 0, segments: 1, fieldOfApplication: 1 } }
+        ]);
+
+        return clinicalData[0] || { segments: [], fieldOfApplication: [] };
     }
 
 
