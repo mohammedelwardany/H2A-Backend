@@ -41,7 +41,7 @@ export class productController {
         return productController.instance;
     }
 
-    async getAllProducts(limit: number, skip: number, segments?: string[], fieldOfApplication?: string[]) {
+    async getAllProducts(limit: number, skip: number, segments?: string[], fieldOfApplication?: string[] , search?:string) {
         const filter: any = {};
       
         if (segments && segments.length > 0) {
@@ -51,6 +51,8 @@ export class productController {
         if (fieldOfApplication && fieldOfApplication.length > 0) {
           filter['clinicalSegments.fieldOfApplication'] = { $in: fieldOfApplication };
         }
+
+        if(search) filter["name"] = new RegExp(search,"i")
       
         return await Product.find(filter).skip(skip - 1).limit(limit);
       }
@@ -87,6 +89,10 @@ export class productController {
         ]);
 
         return clinicalData[0] || { segments: [], fieldOfApplication: [] };
+    }
+
+    async search(productName:string){
+        return await Product.find({name:productName})
     }
 
 
