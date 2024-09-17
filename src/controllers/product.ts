@@ -54,7 +54,7 @@ export class productController {
 
         if(search) filter["name"] = new RegExp(search,"i")
       
-        return await Product.find(filter).skip(skip - 1).limit(limit);
+        return await Product.find(filter).skip((skip - 1)*limit).limit(limit);
       }
 
     async createProduct(product: IProduct) {
