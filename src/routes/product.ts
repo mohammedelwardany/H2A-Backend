@@ -14,32 +14,32 @@ const productControllerInstance = productController.getInstance()
 export const productRouter: () => Router = () => {
     router.get("/", async (req, res, next) => {
         try {
-            const { limit, skip , segments , fields , search } = req.query;
-            const products = await productControllerInstance.getAllProducts(+limit, +skip,segments as string[],fields as string[] , search as string);
+            const { limit, skip, segments, fields, search } = req.query;
+            const products = await productControllerInstance.getAllProducts(+limit, +skip, segments?.toString().split(","), fields?.toString().split(","), search as string);
             return res.status(200).json(products)
         } catch (error) {
             next(error)
         }
     })
-    router.get("/segment-field",async(req,res,next)=>{
+    router.get("/segment-field", async (req, res, next) => {
         try {
             return res.status(200).json(await productControllerInstance.getSegment_Fields())
         } catch (error) {
             next(error)
         }
     })
-    router.get("/:id",joiParam(ID.data) ,async (req, res, next) => {
+    router.get("/:id", joiParam(ID.data), async (req, res, next) => {
         try {
             const { id } = req.params;
             const product = await productControllerInstance.getProductById(id);
-            if(!product) throw new CustomError("NOT FOUND",404)
+            if (!product) throw new CustomError("NOT FOUND", 404)
             return res.status(200).json(product)
         } catch (error) {
             next(error)
         }
     })
 
-    router.post("/",joiValidation(productSchema.data) ,async (req, res, next) => {
+    router.post("/", joiValidation(productSchema.data), async (req, res, next) => {
         try {
             return res.status(201).json(await productControllerInstance.createProduct(req.body))
         } catch (error) {
@@ -47,23 +47,23 @@ export const productRouter: () => Router = () => {
         }
     })
 
-    router.put("/:id",joiParam(ID.data),joiValidation(productSchema.data),async(req,res,next)=>{
+    router.put("/:id", joiParam(ID.data), joiValidation(productSchema.data), async (req, res, next) => {
         try {
-            const{id}=req.params;
-            const product =  await productControllerInstance.updateProduct(id,req.body);
-            if(!product) throw new CustomError("NOT FOUND",404)
-            return res.status(200).json({message:"Product Update Successfully"})
+            const { id } = req.params;
+            const product = await productControllerInstance.updateProduct(id, req.body);
+            if (!product) throw new CustomError("NOT FOUND", 404)
+            return res.status(200).json({ message: "Product Update Successfully" })
         } catch (error) {
             next(error)
         }
     })
 
-    router.delete("/:id",joiParam(ID.data),async(req,res,next)=>{
+    router.delete("/:id", joiParam(ID.data), async (req, res, next) => {
         try {
-            const{id}=req.params;
+            const { id } = req.params;
             const product = await productControllerInstance.deleteProduct(id);
-            if(!product) throw new CustomError("NOT FOUND",404)
-            return res.status(200).json({product,message:"Deleted Successfully"})
+            if (!product) throw new CustomError("NOT FOUND", 404)
+            return res.status(200).json({ product, message: "Deleted Successfully" })
         } catch (error) {
             next(error)
         }
