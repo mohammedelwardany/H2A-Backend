@@ -1,0 +1,75 @@
+{
+    "description": {
+        "describe": "It is a cutting-edge ultrasound system developed by Philips, specifically designed for cardiology. It delivers high-quality imaging and advanced diagnostic capabilities, making it a premier choice for cardiovascular care. It is a high-performance ultrasound system that combines advanced imaging technologies with AI-enhanced tools to improve diagnostic confidence and workflow efficiency in cardiovascular care.",
+        "benefits": [
+            "From transthoracic and transesophageal echocardiography to stress echo and fetal echocardiography, the EPIQ CVx is versatile, catering to a wide range of cardiac assessments.",
+            "Easily upgraded with future software and hardware advancements, making it a sustainable investment for healthcare facilities.",
+            "Designed with clinicians in mind. It has an intuitive user interface, customizable controls, and ergonomic features that reduce physical strain, enhancing overall ease of use during lengthy procedures.",
+            "The system incorporates artificial intelligence to streamline workflows, including features like AutoStrain, which automatically quantifies left ventricular function, and Dynamic HeartModel, offering advanced 3D views of the heart.",
+            "It uses Philips' proprietary nSIGHT Imaging and PureWave transducers, which provide incredibly detailed images, allowing for precise diagnostics even in challenging cases. The system’s architecture enhances spatial and temporal resolution, improving visualization of cardiac structures."
+        ]
+    },
+    "specifications": [
+        {
+            "System dimensions": {
+                "Width": "60.6 cm",
+                "Height": "146-171.5 cm",
+                "Depth": "109.2 cm",
+                "Weight": "104.3 kg"
+            }
+        },
+        {
+            "Control panel": {
+                "Monitor size": "54.9 cm",
+                "Degrees of movement": "180 degrees",
+                "Height adjustment": "25.4 cm"
+            }
+        }
+    ],
+    "clinicalSegments": {
+        "segments": [
+            "Cardiology",
+            "Interventional Cardiology"
+        ],
+        "fieldOfApplication": [
+            "Cardiovascular"
+        ]
+    },
+    "name": "EPIQ CVxi Cardiac Ultrasound",
+    "subName": "A Cardiology-Specialized Diagnostic System",
+    "pros": [
+        "Enhanced visualization of anatomy",
+        "AI-enabled consistency ",
+        "Improved EchoNavigator live fusion imaging",
+        "Efficient workflow solutions"
+    ],
+    "images": [
+        "https://firebasestorage.googleapis.com/v0/b/test-7f420.appspot.com/o/H2a%2FEPIQ%20CVxi%2Fd2b78a5b5ac9427e9c45a8c400d9bb8b.webp?alt=media&token=2a10b40d-0648-46b6-b817-d22c66141001",
+        "https://firebasestorage.googleapis.com/v0/b/test-7f420.appspot.com/o/H2a%2FEPIQ%20CVxi%2F0bf91e0a129741c69033a8c400d9baf8.webp?alt=media&token=afcdc1bf-18a6-408e-93c2-f5d90a1a5aca",
+        "https://firebasestorage.googleapis.com/v0/b/test-7f420.appspot.com/o/H2a%2FEPIQ%20CVxi%2F991c0b1a243d4e169a55a8c400d9ba79.jfif?alt=media&token=e84f64b8-d97d-443c-8cad-3e05fd00552f",
+        "https://firebasestorage.googleapis.com/v0/b/test-7f420.appspot.com/o/H2a%2FEPIQ%20CVxi%2F40b8a90a289e41a8892ab0d0016069ff.webp?alt=media&token=0e4ae0fa-4712-42f6-92bc-4da0b0f8c302"
+    ],
+    "activeImage": "https://firebasestorage.googleapis.com/v0/b/test-7f420.appspot.com/o/H2a%2FEPIQ%20CVxi%2FEPIQ%20CVxi.webp?alt=media&token=9753ce10-4d26-49fa-a6f4-7121fb59e122",
+    "feature": [
+        "The Philips X11-4t small 3D TEE gives you the space, reach, and angles you need to assist in diagnosing and treating more patients.",
+        "3D Auto Tricuspid Valve Quantification, an AI helps confirm/re-evaluate device size/selection with accurate and peri-procedure TV annulus measurements.",
+        "VeriSight Pro offers 2D and 3D imaging with EPIQ CVxi."
+    ],
+    "document": [
+       {
+            "title": "EPIQ CVx/CVxi Feature and User Experience",
+            "pdfUrl": "https://www.documents.philips.com/assets/20181113/f1efc848a59b4c118da6a99700902ab7.pdf",
+            "size": "9.4"
+        },
+        {
+            "title": "X11-4t Product Brochure",
+            "pdfUrl": "https://www.documents.philips.com/assets/20240425/5501a1a1fa774e93a440b15d0186a001.pdf",
+            "size": "1.0"
+        },
+        {
+            "title": "EPIQ CVx/CVxi Product Overview Ultrasound",
+            "pdfUrl": "https://www.documents.philips.com/assets/20240502/240d371246504779bca2b164016b35c5.pdf",
+            "size": "8.9"
+        }
+    ]
+}

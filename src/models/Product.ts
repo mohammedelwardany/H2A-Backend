@@ -19,14 +19,6 @@ const productSchema = new Schema<IProduct>({
         type: [String], 
         required: false
       },
-      activeImage:{
-        type:String,
-        required: false
-      },
-      hoverImage:{
-        type:String,
-        required: false
-      },
       feature:{
         type:[String],
         required: false
@@ -42,18 +34,7 @@ const productSchema = new Schema<IProduct>({
         }
       },
       specifications: {
-        horizontalAdjustment: {
-          type: String,
-          required: false
-        },
-        verticalAdjustment: {
-          type: String,
-          required: false
-        },
-        wheel: {
-          type: String,
-          required: false
-        }
+        type:[Object]
       },
       clinicalSegments: {
         segments: {

@@ -5,19 +5,12 @@ export const productSchema = {
         name: Joi.string().required(),
         subName: Joi.string().optional(),
         pros: Joi.array<string>().optional(),
-        images: Joi.array<string>().optional(),
-        activeImage: Joi.string().optional(),
-        hoverImage: Joi.string().optional(),
         description: {
             describe: Joi.string().optional(),
             benefits: Joi.array<string>().optional(),
         },
         feature: Joi.array<string>().optional(),
-        specifications: {
-            horizontalAdjustment: Joi.string().optional(),
-            verticalAdjustment: Joi.string().optional(),
-            wheel: Joi.string().optional()
-        },
+        specifications: Joi.array<object>().optional(),
         clinicalSegments: {
             segments: Joi.array<string>().optional(),
             fieldOfApplication: Joi.array<string>().optional()

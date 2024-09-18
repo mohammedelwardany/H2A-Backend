@@ -5,6 +5,9 @@ import { connect } from './config/db';
 import { mainRouter } from './routes';
 import { errorHandler } from './middleware/errorHandler';
 
+import path from 'path';
+
+
 
 const app = express();
 
@@ -15,6 +18,9 @@ const app = express();
 app.use(cors());
 //parse json
 app.use(express.json());
+
+// save the images in server in static folder which can we get from it the images
+app.use('', express.static(path.join(__dirname, '../public/images')));
 //#endregion
 
 //test request

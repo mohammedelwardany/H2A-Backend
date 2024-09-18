@@ -18,14 +18,6 @@ const productSchema = new mongoose_1.Schema({
         type: [String],
         required: false
     },
-    activeImage: {
-        type: String,
-        required: false
-    },
-    hoverImage: {
-        type: String,
-        required: false
-    },
     feature: {
         type: [String],
         required: false

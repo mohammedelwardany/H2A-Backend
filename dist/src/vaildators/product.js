@@ -11,7 +11,6 @@ exports.productSchema = {
         subName: joi_1.default.string().optional(),
         pros: joi_1.default.array().optional(),
         images: joi_1.default.array().optional(),
-        activeImage: joi_1.default.string().optional(),
         hoverImage: joi_1.default.string().optional(),
         description: {
             describe: joi_1.default.string().optional(),

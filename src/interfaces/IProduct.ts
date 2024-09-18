@@ -3,18 +3,12 @@ export interface IProduct {
     subName: string | null,
     pros: string[] | null,
     images: String[] | null,
-    activeImage?: string,
-    hoverImage?: string,
     description: {
         describe: string,
         benefits: string[] | null,
     },
     feature?:string[],
-    specifications: {
-        horizontalAdjustment: string | null,
-        verticalAdjustment: string | null,
-        wheel: string | null
-    },
+    specifications:object[],
     clinicalSegments: {
         segments?: string[],
         fieldOfApplication?: string[]
