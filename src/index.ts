@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 // save the images in server in static folder which can we get from it the images
-app.use('', express.static(path.join(__dirname, '../public/images')));
+app.use('', express.static(path.join(__dirname, '/public/images')));
 //#endregion
 
 //test request

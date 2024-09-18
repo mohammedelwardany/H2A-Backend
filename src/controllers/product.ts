@@ -79,7 +79,7 @@ export class productController {
 
     async createImages(files: Express.Multer.File[] , id:string , fileName:string){
         
-        const imageUrls = files.map((file) => `/public/images/${file.filename}`);
+        const imageUrls = files.map((file) => `/public/images/${fileName}/${file.filename}`);
 
         const newProduct = {
             images: imageUrls, 
