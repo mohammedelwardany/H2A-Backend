@@ -50,9 +50,8 @@ export class productController {
 
     async deleteProduct(id: string) {
         const deletedProduct =  await Product.findByIdAndDelete(id);
-        const imagesMessage =this.deleteImages(deletedProduct.name);
-
-        return {deletedProduct,imagesMessage};
+        if(deletedProduct) this.deleteImages(deletedProduct.name);
+        return deletedProduct;
     }
 
     async getSegment_Fields() {
@@ -97,7 +96,6 @@ export class productController {
              throw err
             }
           });
-          return "Images Deleted"
     }
 
 

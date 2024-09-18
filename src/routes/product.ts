@@ -75,8 +75,8 @@ export const productRouter: () => Router = () => {
         try {
             const { id } = req.params;
             const product = await productControllerInstance.deleteProduct(id);
-            if (!product.deletedProduct) throw new CustomError("NOT FOUND", 404)
-            return res.status(200).json({ message: "Deleted Successfully" , images_message:product.imagesMessage })
+            if (!product) throw new CustomError("NOT FOUND", 404)
+            return res.status(200).json({ message: "Deleted Successfully" })
         } catch (error) {
             next(error)
         }
