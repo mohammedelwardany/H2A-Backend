@@ -50,7 +50,7 @@ export class productController {
 
     async deleteProduct(id: string) {
         const deletedProduct =  await Product.findByIdAndDelete(id);
-        if(deletedProduct) this.deleteImages(deletedProduct.name);
+        // if(deletedProduct) this.deleteImages(deletedProduct.name);
         return deletedProduct;
     }
 

@@ -7,8 +7,7 @@ import CustomError from "../errors/CustomError";
 
 export const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const folderName = req.body.name;
-        
+        const folderName = req.body.name; 
         if (folderName) {
             const dir = path.join(__dirname, '../../public/images', folderName);
 
@@ -29,6 +28,8 @@ export const storage = multer.diskStorage({
 })
 
 export const fileFilter = (req: Express.Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+    
+    
     if(req.files && (req.files.length as number) > 0){    
     const allowedTypes = /jpeg|jpg|png|webp|jfif/;
     const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
