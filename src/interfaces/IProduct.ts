@@ -2,7 +2,7 @@ export interface IProduct {
     name: string,
     subName: string | null,
     pros: string[] | null,
-    images: String[] | null,
+    images: object[] | null,
     description: {
         describe: string,
         benefits: string[] | null,

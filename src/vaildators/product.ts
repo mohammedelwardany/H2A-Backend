@@ -9,7 +9,7 @@ export const productSchema = {
             describe: Joi.string().optional().empty(),
             benefits: Joi.array<string>().optional().empty(),
         },
-        images:Joi.array<string>().optional().empty(),
+        images:Joi.array<object>().optional().empty(),
         feature: Joi.array<string>().optional().empty(),
         specifications: Joi.array<object>().optional().empty(),
         clinicalSegments: {

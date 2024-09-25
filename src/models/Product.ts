@@ -16,7 +16,7 @@ const productSchema = new Schema<IProduct>({
         required: false
       },
       images: {
-        type: [String], 
+        type: [Object], 
         required: false
       },
       feature:{
