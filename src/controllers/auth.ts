@@ -3,7 +3,7 @@ import User from "../models/User";
 import CustomError from "../errors/CustomError";
 import { IUser } from '../interfaces/IUser';
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from '../../constants';
+import { JWT_SECRET, PASSWORD_HASH_ROUND } from '../../constants';
 
 
 export class authController{
@@ -32,9 +32,10 @@ export class authController{
         if(!isMatch)
           throw new CustomError("Invalid credentials",401)
 
-        const token = jwt.sign({user},JWT_SECRET as string)
-  
-        return {user , token}
+        // const token = jwt.sign({user},JWT_SECRET as string)
+
+        user.password= undefined;
+        return user
       }
 
 
@@ -42,7 +43,12 @@ export class authController{
 
         const {name,email,password,role} = user_
 
-        const passwordHash = await bcrypt.hash(password,10)
+        const userFound = await User.findOne({email},{__v:0})
+  
+        if(userFound)
+          throw new CustomError("User is Registered Already",400)
+
+        const passwordHash = await bcrypt.hash(password,PASSWORD_HASH_ROUND)
 
         const user = await User.create({
           name,

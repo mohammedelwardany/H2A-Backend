@@ -4,7 +4,6 @@ import express, { Router } from 'express';
 import { ID } from '../vaildators/general';
 import { productSchema } from '../vaildators/product';
 import CustomError from '../errors/CustomError';
-import { upload } from '../middleware/upload';
 
 
 
@@ -25,10 +24,18 @@ export const productRouter: () => Router = () => {
     //         next(error);
     //     }
     // })
+
+    router.get('/all',async(req, res, next)=>{
+        try {
+            return res.status(200).json(await productControllerInstance.getAllProducts())
+        } catch (error) {
+            next(error)
+        }
+    })
     router.get("/", async (req, res, next) => {
         try {
             const { limit, skip, segments, fields, search } = req.query;
-            const products = await productControllerInstance.getAllProducts(+limit, +skip, segments?.toString().split(","), fields?.toString().split(","), search as string);
+            const products = await productControllerInstance.getProducts(+limit, +skip, segments?.toString().split(","), fields?.toString().split(","), search as string);
             return res.status(200).json(products)
         } catch (error) {
             next(error)

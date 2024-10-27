@@ -19,7 +19,7 @@ export class productController {
         return productController.instance;
     }
 
-    async getAllProducts(limit: number, skip: number, segments?: string[], fieldOfApplication?: string[] , search?:string) {
+    async getProducts(limit: number, skip: number, segments?: string[], fieldOfApplication?: string[] , search?:string) {
         const filter: any = {};
       
         if (segments && segments.length > 0) {
@@ -96,6 +96,10 @@ export class productController {
              throw err
             }
           });
+    }
+
+    async getAllProducts(){
+        return await Product.find();
     }
 
 
