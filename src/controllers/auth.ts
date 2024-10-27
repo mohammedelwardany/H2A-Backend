@@ -48,7 +48,7 @@ export class authController{
         if(userFound)
           throw new CustomError("User is Registered Already",400)
 
-        const passwordHash = await bcrypt.hash(password,PASSWORD_HASH_ROUND)
+        const passwordHash = await bcrypt.hash(password,+PASSWORD_HASH_ROUND)
 
         const user = await User.create({
           name,
