@@ -13,17 +13,6 @@ const productControllerInstance = productController.getInstance()
 
 export const productRouter: () => Router = () => {
 
-    // router.post("/images/:id", upload.array("images", 10), async (req, res, next) => {
-    //     try {
-    //         const files = req.files as Express.Multer.File[];
-    //         const {id} = req.params
-    //         const FileName = req.body.name;
-    //         if(!id || !files || files.length < 0) throw new CustomError("Some Thing wrong please check that you add any images" , 400)
-    //         res.status(200).json({message:await productControllerInstance.createImages(files,id,FileName)})
-    //     } catch (error) {
-    //         next(error);
-    //     }
-    // })
 
     router.get('/all',async(req, res, next)=>{
         try {
