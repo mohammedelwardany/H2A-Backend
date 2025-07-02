@@ -15,7 +15,7 @@ const productSchema = new mongoose_1.Schema({
         required: false
     },
     images: {
-        type: [String],
+        type: [Object],
         required: false
     },
     feature: {
@@ -33,18 +33,7 @@ const productSchema = new mongoose_1.Schema({
         }
     },
     specifications: {
-        horizontalAdjustment: {
-            type: String,
-            required: false
-        },
-        verticalAdjustment: {
-            type: String,
-            required: false
-        },
-        wheel: {
-            type: String,
-            required: false
-        }
+        type: [Object]
     },
     clinicalSegments: {
         segments: {

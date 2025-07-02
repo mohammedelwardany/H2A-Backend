@@ -8,28 +8,23 @@ const joi_1 = __importDefault(require("joi"));
 exports.productSchema = {
     data: joi_1.default.object({
         name: joi_1.default.string().required(),
-        subName: joi_1.default.string().optional(),
-        pros: joi_1.default.array().optional(),
-        images: joi_1.default.array().optional(),
-        hoverImage: joi_1.default.string().optional(),
+        subName: joi_1.default.string().optional().empty(),
+        pros: joi_1.default.array().optional().empty(),
         description: {
-            describe: joi_1.default.string().optional(),
-            benefits: joi_1.default.array().optional(),
+            describe: joi_1.default.string().optional().empty(),
+            benefits: joi_1.default.array().optional().empty(),
         },
-        feature: joi_1.default.array().optional(),
-        specifications: {
-            horizontalAdjustment: joi_1.default.string().optional(),
-            verticalAdjustment: joi_1.default.string().optional(),
-            wheel: joi_1.default.string().optional()
-        },
+        images: joi_1.default.array().optional().empty(),
+        feature: joi_1.default.array().optional().empty(),
+        specifications: joi_1.default.array().optional().empty(),
         clinicalSegments: {
-            segments: joi_1.default.array().optional(),
-            fieldOfApplication: joi_1.default.array().optional()
+            segments: joi_1.default.array().optional().empty(),
+            fieldOfApplication: joi_1.default.array().optional().empty()
         },
         document: joi_1.default.array().items({
-            pdfUrl: joi_1.default.string().optional(),
-            size: joi_1.default.string().optional(),
-            title: joi_1.default.string().optional()
+            pdfUrl: joi_1.default.string().optional().empty(),
+            size: joi_1.default.string().optional().empty(),
+            title: joi_1.default.string().optional().empty()
         })
     })
 };

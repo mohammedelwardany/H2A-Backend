@@ -9,12 +9,15 @@ const cors_1 = __importDefault(require("cors"));
 const db_1 = require("./config/db");
 const routes_1 = require("./routes");
 const errorHandler_1 = require("./middleware/errorHandler");
+const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 //#region Middleware
 //cors
 app.use((0, cors_1.default)());
 //parse json
 app.use(express_1.default.json());
+// save the images in server in static folder which can we get from it the images
+app.use('/images', express_1.default.static(path_1.default.join(__dirname, '../public/images')));
 //#endregion
 //test request
 app.get("/", (req, res) => {

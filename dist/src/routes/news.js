@@ -3,37 +3,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.productRouter = void 0;
+exports.newsRouter = void 0;
 const joiVadiation_1 = require("../middleware/joiVadiation");
-const product_1 = require("../controllers/product");
 const express_1 = __importDefault(require("express"));
 const general_1 = require("../vaildators/general");
-const product_2 = require("../vaildators/product");
+const news_1 = require("../vaildators/news");
 const CustomError_1 = __importDefault(require("../errors/CustomError"));
+const news_2 = require("../controllers/news");
 const router = express_1.default.Router();
-const productControllerInstance = product_1.productController.getInstance();
-const productRouter = () => {
+const productControllerInstance = news_2.NewsController.getInstance();
+const newsRouter = () => {
     router.get('/all', async (req, res, next) => {
         try {
-            return res.status(200).json(await productControllerInstance.getAllProducts());
-        }
-        catch (error) {
-            next(error);
-        }
-    });
-    router.get("/", async (req, res, next) => {
-        try {
-            const { limit, skip, segments, fields, search } = req.query;
-            const products = await productControllerInstance.getProducts(+limit, +skip, segments?.toString().split(","), fields?.toString().split(","), search);
-            return res.status(200).json(products);
-        }
-        catch (error) {
-            next(error);
-        }
-    });
-    router.get("/segment-field", async (req, res, next) => {
-        try {
-            return res.status(200).json(await productControllerInstance.getSegment_Fields());
+            return res.status(200).json(await productControllerInstance.getNews());
         }
         catch (error) {
             next(error);
@@ -42,7 +24,7 @@ const productRouter = () => {
     router.get("/:id", (0, joiVadiation_1.joiParam)(general_1.ID.data), async (req, res, next) => {
         try {
             const { id } = req.params;
-            const product = await productControllerInstance.getProductById(id);
+            const product = await productControllerInstance.getNewsById(id);
             if (!product)
                 throw new CustomError_1.default("NOT FOUND", 404);
             return res.status(200).json(product);
@@ -51,18 +33,18 @@ const productRouter = () => {
             next(error);
         }
     });
-    router.post("/", (0, joiVadiation_1.joiValidation)(product_2.productSchema.data), async (req, res, next) => {
+    router.post("/", (0, joiVadiation_1.joiValidation)(news_1.newsSchema.data), async (req, res, next) => {
         try {
-            return res.status(201).json(await productControllerInstance.createProduct(req.body));
+            return res.status(201).json(await productControllerInstance.createNews(req.body));
         }
         catch (error) {
             next(error);
         }
     });
-    router.put("/:id", (0, joiVadiation_1.joiParam)(general_1.ID.data), (0, joiVadiation_1.joiValidation)(product_2.productSchema.data), async (req, res, next) => {
+    router.put("/:id", (0, joiVadiation_1.joiParam)(general_1.ID.data), (0, joiVadiation_1.joiValidation)(news_1.newsSchema.data), async (req, res, next) => {
         try {
             const { id } = req.params;
-            const product = await productControllerInstance.updateProduct(id, req.body);
+            const product = await productControllerInstance.updateNews(id, req.body);
             if (!product)
                 throw new CustomError_1.default("NOT FOUND", 404);
             return res.status(200).json({ message: "Product Update Successfully" });
@@ -74,7 +56,7 @@ const productRouter = () => {
     router.delete("/:id", (0, joiVadiation_1.joiParam)(general_1.ID.data), async (req, res, next) => {
         try {
             const { id } = req.params;
-            const product = await productControllerInstance.deleteProduct(id);
+            const product = await productControllerInstance.deleteNews(id);
             if (!product)
                 throw new CustomError_1.default("NOT FOUND", 404);
             return res.status(200).json({ message: "Deleted Successfully" });
@@ -85,5 +67,5 @@ const productRouter = () => {
     });
     return router;
 };
-exports.productRouter = productRouter;
-//# sourceMappingURL=product.js.map
+exports.newsRouter = newsRouter;
+//# sourceMappingURL=news.js.map

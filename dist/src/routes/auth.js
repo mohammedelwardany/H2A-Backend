@@ -14,18 +14,18 @@ const authRouter = () => {
     router.post("/login", (0, joiVadiation_1.joiValidation)(auth_2.loginSchema.data), async (req, res, next) => {
         try {
             const { email, password } = req.body;
-            const { user, token } = await authControllerInstance.login(email, password);
-            return res.status(200).json({ message: "Successfully", user, token });
+            const user = await authControllerInstance.login(email, password);
+            return res.status(200).json({ message: "Successfully", user });
         }
         catch (error) {
             next(error);
         }
     });
-    router.post("/adduser", (0, joiVadiation_1.joiValidation)(auth_2.authSchema.data), async (req, res, next) => {
+    router.post("/register", (0, joiVadiation_1.joiValidation)(auth_2.authSchema.data), async (req, res, next) => {
         try {
             const { name, email, password, role } = req.body;
-            const user = await authControllerInstance.adduser({ name, email, password, role });
-            return res.status(201).json({ message: "User Created Successfully", user });
+            await authControllerInstance.adduser({ name, email, password, role });
+            return res.status(201).json({ message: "User Created Successfully" });
         }
         catch (error) {
             next(error);
